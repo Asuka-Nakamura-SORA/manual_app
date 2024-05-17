@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>登録画面</h1>
-    <form action="" method="post">
+    <form action=""{{ route('login') }}method="post">
         @csrf
         <label for="name">名前</label>
         <input type="text" name="name" id="name"><br>
@@ -30,6 +30,7 @@
             @enderror
             <br>
         <button type="submit">送信</button>
+        <input type="button" value="戻る" onclick="window.history.back()">
     </form>
 </body>
 </html>

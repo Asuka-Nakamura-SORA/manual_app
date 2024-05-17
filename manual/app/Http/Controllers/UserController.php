@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UserRequest;
 
 
 class UserController extends Controller
@@ -17,21 +18,14 @@ class UserController extends Controller
     }
 
     //送信先を設定
-    public function register(Request $request)
+    public function register(UserRequest $request)
     {
 
-        // リクエストデータのバリデーション
-        $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:users',
-        'password' => 'required|string|min:8',
-    ]);
-
-        // ユーザーを作成し、パスワードをハッシュ化して保存
-        $user = User::query()->create([
-            'name'=>$request['name'],
-            'email'=>$request['email'],
-            'password'=>Hash::make($request['password'])
+         // ユーザーを作成し、パスワードをハッシュ化して保存
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password'))
         ]);
 
         //createしたユーザーでログインする
@@ -60,24 +54,21 @@ class UserController extends Controller
         return view('login');
     }
 
-    public function login(Request $request)
+    public function login(UserRequest $request)
     {
-        // リクエストデータのバリデーションを行う
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required','string','min:8'],
-        ]);
+        // リクエストのバリデーションを通過したデータを取得
+        $validatedData = $request->validated();
 
-        //ユーザー認証
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+    // ユーザー認証
+    if (Auth::attempt($validatedData)) {
+        $request->session()->regenerate();
 
-            return redirect()->intended('profile');
-        }
+        return redirect()->intended('profile');
+    }
 
         // ユーザー認証が失敗した場合は、ログインページに戻り、エラーメッセージを表示
         return back()->withErrors([
-            'email' => '認証に失敗しました。'
+            'email' => 'メールアドレスもしくはパスワードが間違っています'
         ]);
     }
 }
