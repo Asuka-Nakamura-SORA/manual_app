@@ -46,4 +46,27 @@ class UserController extends Controller
 
         return redirect('/');
     }
+
+    //ログイン機能
+    public function showLogin()
+    {
+        return view('login');
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        //ユーザー認証
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('profile');
+        }
+
+        return back();
+    }
 }
