@@ -41,7 +41,6 @@ class UserController extends Controller
         return redirect()->route('profile');
     }
 
-    //profileに飛ばす
     public function profile()
     {
         return view('profile');
@@ -63,9 +62,10 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
+        // リクエストデータのバリデーションを行う
         $credentials = $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required'],
+            'password' => ['required','string','min:8'],
         ]);
 
         //ユーザー認証
@@ -75,6 +75,9 @@ class UserController extends Controller
             return redirect()->intended('profile');
         }
 
-        return back();
+        // ユーザー認証が失敗した場合は、ログインページに戻り、エラーメッセージを表示
+        return back()->withErrors([
+            'email' => '認証に失敗しました。'
+        ]);
     }
 }
