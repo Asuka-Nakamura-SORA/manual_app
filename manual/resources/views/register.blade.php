@@ -12,11 +12,23 @@
     <form action="" method="post">
         @csrf
         <label for="name">名前</label>
-        <input type="text" name="name" id="name">
+        <input type="text" name="name" id="name"><br>
+            @error('name')
+            <span>{{ $message }}</span>
+            @enderror
+        <br>
         <label for="email">メールアドレス</label>
-        <input type="email" name="email" id="email">
+        <input type="email" name="email" id="email"><br>
+            @error('email')
+            <span>{{ $message }}</span>
+            @enderror
+        <br>
         <label for="password">パスワード</label>
-        <input type="password" name="password" id="password">
+        <input type="password" name="password" id="password"><br>
+            @error('password')
+            <span>{{ $message }}</span>
+            @enderror
+            <br>
         <button type="submit">送信</button>
     </form>
 </body>

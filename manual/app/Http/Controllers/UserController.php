@@ -19,10 +19,18 @@ class UserController extends Controller
     //送信先を設定
     public function register(Request $request)
     {
+
+        // リクエストデータのバリデーション
+        $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:8',
+    ]);
+
+        // ユーザーを作成し、パスワードをハッシュ化して保存
         $user = User::query()->create([
             'name'=>$request['name'],
             'email'=>$request['email'],
-            //パスワードをハッシュ化する
             'password'=>Hash::make($request['password'])
         ]);
 

@@ -12,8 +12,14 @@
         @csrf
         <label for="email">メールアドレス</label>
         <input type="email" name="email" id="email">
+            @if ($errors->first('email'))
+            <p class="validation">※{{$errors->first('email')}}</p>
+            @endif
         <label for="password">パスワード</label>
         <input type="password" name="password" id="password">
+            @if ($errors->first('password'))
+            <p class="validation">※{{$errors->first('password')}}</p>
+            @endif
         <button type="submit">送信</button>
     </form>
 </body>

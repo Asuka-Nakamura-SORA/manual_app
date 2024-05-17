@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/',[\App\Http\Controllers\UserController::class,'showRegister']);
+Route::get('/register',[\App\Http\Controllers\UserController::class,'showRegister']);
 
-Route::post('/',[\App\Http\Controllers\UserController::class,'register']);
+Route::post('/register',[\App\Http\Controllers\UserController::class,'register']);
 
 Route::middleware('auth')->group(function (){
     Route::get('/profile',[\App\Http\Controllers\UserController::class,'profile'])->name('profile');
@@ -12,6 +12,6 @@ Route::middleware('auth')->group(function (){
 
 Route::post('logout',[\App\Http\Controllers\UserController::class,'logout'])->name('user.logout');
 
-Route::get('/login',[\App\Http\Controllers\UserController::class,'showLogin']);
+Route::get('/',[\App\Http\Controllers\UserController::class,'showLogin']);
 
-Route::post('/login',[\App\Http\Controllers\UserController::class,'login']);
+Route::post('/',[\App\Http\Controllers\UserController::class,'login']);
