@@ -16,7 +16,7 @@ class UserController extends Controller
         return view('register');
     }
 
-    //送信先
+    //送信先を設定
     public function register(Request $request)
     {
         $user = User::query()->create([
@@ -33,8 +33,17 @@ class UserController extends Controller
         return redirect()->route('profile');
     }
 
+    //profileに飛ばす
     public function profile()
     {
         return view('profile');
+    }
+
+    //ログアウト機能
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect('/');
     }
 }
