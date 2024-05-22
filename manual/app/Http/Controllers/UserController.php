@@ -20,7 +20,6 @@ class UserController extends Controller
     //送信先を設定
     public function register(UserRequest $request)
     {
-
          // ユーザーを作成し、パスワードをハッシュ化して保存
         $user = User::create([
             'name' => $request->input('name'),
@@ -56,15 +55,14 @@ class UserController extends Controller
 
     public function login(UserRequest $request)
     {
-        // リクエストのバリデーションを通過したデータを取得
-        $validatedData = $request->validated();
 
-    // ユーザー認証
-    if (Auth::attempt($validatedData)) {
+            // ユーザー認証
+    if (Auth::attempt($request->only('email', 'password'))) {
         $request->session()->regenerate();
 
         return redirect()->intended('profile');
     }
+
 
         // ユーザー認証が失敗した場合は、ログインページに戻り、エラーメッセージを表示
         return back()->withErrors([

@@ -11,7 +11,7 @@ class UserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,19 +22,16 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         // 登録時のバリデーションルール
-        if ($this->is('register')) {
+        if ($this->isMethod('post') && $this->path() === 'login') {
             return [
-                'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'email' => 'required|email',
+                'password' => 'required',
             ];
-        }
-
-        // ログイン時のバリデーションルール
-        if ($this->is('login')) {
+        } elseif ($this->isMethod('post') && $this->path() === 'register') {
             return [
-                'email' => ['required', 'string', 'email'],
-                'password' => ['required', 'string', 'min:8'],
+                'name' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required|min:8',
             ];
         }
 

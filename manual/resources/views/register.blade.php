@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>登録画面</h1>
-    <form action=""{{ route('login') }}method="post">
+    <form action="{{ route('register') }}" method="post">
         @csrf
         <label for="name">名前</label>
         <input type="text" name="name" id="name"><br>

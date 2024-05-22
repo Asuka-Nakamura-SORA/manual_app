@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>ログイン画面</h1>
-    <form action="" method="post">
+    <form action="{{ route('login') }}" method="post">
         @csrf
         <label for="email">メールアドレス</label>
         <input name="email" id="email">
@@ -16,14 +16,14 @@
         <input type="password" name="password" id="password">
         <button type="submit">送信</button>
     </form>
-{{-- 
+
     @if ($errors->any())
         <div>
             @foreach ($errors->all() as $error)
             {{ $error }}
             @endforeach
         </div>
-    @endif --}}
+    @endif
 
     <a href="{{ route('register') }}">会員登録はこちら</a>
 
