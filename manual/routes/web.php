@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/register', [UserController::class, 'showRegister'])->name('register');
 
@@ -16,3 +18,10 @@ Route::post('logout',[UserController::class,'logout'])->name('user.logout');
 Route::get('/',[UserController::class,'showLogin'])->name('login');
 
 Route::post('/',[UserController::class,'login']);
+
+Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+
+Route::post('/posts/create', [PostController::class, 'store']); 
+
+Route::get('/category', [CategoryController::class, 'create'])->name('category.create');
+Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
