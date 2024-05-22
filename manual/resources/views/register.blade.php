@@ -29,7 +29,7 @@
             <span>{{ $message }}</span>
             @enderror
             <br>
-        <button type="submit">送信</button>
+        <button type="submit">登録</button>
         <input type="button" value="戻る" onclick="window.history.back()">
     </form>
 </body>
