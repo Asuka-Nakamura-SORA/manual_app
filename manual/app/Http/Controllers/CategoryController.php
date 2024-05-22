@@ -7,16 +7,17 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    public function create()
+    public function index()
     {
-        return view('category');
+        $categories = Category::all();
+        return view('category/index', ['categories' => $categories]);
     }
 
     public function store(Request $request)
     {
-        $cotegory = new Category;
-        $cotegory->name = $request->name;
-        $cotegory->save();
-        return redirect()->route('category.create');
+        $category = new Category;
+        $category->name = $request->name;
+        $category->save();
+        return redirect()->route('category.index');
     }
 }

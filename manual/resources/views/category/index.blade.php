@@ -9,7 +9,7 @@
 <body>
     
     <div>
-        <form action="{{ route('category.create') }}" method="POST">
+        <form action="{{ route('category.store') }}" method="POST">
             @csrf
             <div>
                 カテゴリ名：
@@ -17,6 +17,13 @@
             </div>
             <button>登録</button>
         </form>
+
+        <p>カテゴリ一覧</p>
+        <ul>
+            @foreach ($categories as $category)
+                <li>{{ $category->name }}</li>
+            @endforeach
+        </ul>
     </div>
 </body>
 </html>
