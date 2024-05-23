@@ -56,7 +56,7 @@ class UserController extends Controller
     public function login(UserRequest $request)
     {
 
-            // ユーザー認証
+    // ユーザー認証
     if (Auth::attempt($request->only('email', 'password'))) {
         $request->session()->regenerate();
 
