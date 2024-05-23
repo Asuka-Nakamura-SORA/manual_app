@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\Maker;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
@@ -38,4 +39,12 @@ class PostsController extends Controller
         $post->save();
         return redirect()->route('posts.create');
     }
+
+    public function index()
+    {
+        $posts = Post::latest()->paginate(10); // 最新の投稿を10件ずつ取得
+        return view('posts.index', compact('posts'));
+    }
+    
+
 }

@@ -39,6 +39,6 @@
             <button>投稿</button>
         </form>
     </div>
-
+    <a href="{{ route('profile') }}">マイページに戻る</a><br>
 </body>
 </html>
