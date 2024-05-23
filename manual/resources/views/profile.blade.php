@@ -11,7 +11,8 @@
     {{\Illuminate\Support\Facades\Auth::user()->name}}でログインしています。<br>
 
     <a href="{{ route('posts.create') }}">新規投稿はこちら</a><br>
-    <a href="{{ route('category.index') }}">カテゴリ管理</a>
+    <a href="{{ route('category.index') }}">カテゴリ管理</a><br>
+    <a href="{{ route('maker.index') }}">メーカー管理</a>
 
     <form action="{{route('user.logout')}}" method="post">
         @csrf
