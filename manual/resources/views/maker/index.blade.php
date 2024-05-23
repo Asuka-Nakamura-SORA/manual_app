@@ -16,6 +16,13 @@
             </div>
             <button>登録</button>
         </form>
+
+        <p>メーカー一覧</p>
+        <ul>
+            @foreach ($makers as $maker)
+                <li>{{ $maker->name }}</li>
+            @endforeach
+        </ul>
     </div>
 </body>
 </html>
