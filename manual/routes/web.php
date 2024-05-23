@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MakersController;
 
 Route::get('/register', [UserController::class, 'showRegister'])->name('register');
 
@@ -26,3 +27,7 @@ Route::post('/posts/create', [PostController::class, 'store']);
 Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');
 
 Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
+
+Route::get('/maker/index', [MakersController::class, 'index'])->name('maker.index');
+
+Route::post('/maker', [MakersController::class, 'store'])->name('maker.store');
