@@ -41,21 +41,31 @@ class PostsController extends Controller
         return redirect()->route('posts.create');
     }
 
+    //投稿一覧表示
     public function index()
     {
         $posts = Post::all();
         return view('posts.index', compact('posts'));
     }
     
+    //ユーザー名・カテゴリー・メーカーのnameを取得して詳細に表示
     public function show($id)
     {
-        $post = Post::findOrFail($id); // 投稿が見つからない場合は例外をスローします
-        $post->load('user'); // 投稿に関連するユーザーリレーションをロードします
+        $post = Post::findOrFail($id); 
+        $post->load('user'); 
 
         $category = Category::findOrFail($post->category_id);
         $maker = Maker::findOrFail($post->maker_id);
     
         return view('posts.show', ['post' => $post , 'category' => $category , 'maker' => $maker]);
+    }
+
+    //削除機能
+    public function destroy(Post $post)
+    {
+        $post->delete();
+
+        return redirect()->route('posts.index');
     }
 
 }

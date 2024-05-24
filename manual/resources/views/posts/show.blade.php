@@ -17,7 +17,16 @@
             <img src="{{ asset('storage/' . $post->manual_photo) }}" style="width: 200px">
             @endif            
             <p>{{ $post->created_at }}</p>
+            <form action="{{route('user.logout')}}" method="post">
+                @csrf
+                <button>編集</button>
+            </form>
+            <form action="{{route('posts.destroy' , ['post' => $post->id])}}" method="post">
+                @csrf
+                @method('DELETE')
+                <button>削除</button>
+            </form>
+            <a href="{{ route('posts.index') }}">投稿一覧へ戻る</a><br>
         </div>
-        <a href="{{ route('posts.index') }}">投稿一覧へ戻る</a><br>
 </body>
 </html>
