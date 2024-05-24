@@ -42,9 +42,15 @@ class PostsController extends Controller
 
     public function index()
     {
-        $posts = Post::latest()->paginate(10); // 最新の投稿を10件ずつ取得
+        $posts = Post::all();
         return view('posts.index', compact('posts'));
     }
     
+    public function show($id)
+    {
+        $post = Post::find($id);
+        return view('posts.show', ['post' => $post]);
+    }
+
 
 }
