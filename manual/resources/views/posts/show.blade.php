@@ -17,7 +17,7 @@
             <img src="{{ asset('storage/' . $post->manual_photo) }}" style="width: 200px">
             @endif            
             <p>{{ $post->created_at }}</p>
-            <form action="{{route('user.logout')}}" method="post">
+            <form action="{{route('posts.edit' , ['post' => $post->id])}}" method="get">
                 @csrf
                 <button>編集</button>
             </form>
