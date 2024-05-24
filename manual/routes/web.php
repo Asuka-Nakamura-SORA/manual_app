@@ -35,5 +35,3 @@ Route::get('/posts/{id}', [PostsController::class, 'show'])->name('posts.show');
 Route::get('/',[UserController::class,'showLogin'])->name('login');
 
 Route::post('/',[UserController::class,'login']);
-
-
