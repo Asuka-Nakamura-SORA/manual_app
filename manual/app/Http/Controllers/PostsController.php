@@ -64,7 +64,6 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::where('id', $id)
-                    ->where('user_id', Auth::id()) // ログイン中のユーザーが編集しようとしていることを確認
                     ->first();
 
         $categories = Category::all(); 
@@ -74,36 +73,35 @@ class PostsController extends Controller
     }
 
     public function update(Request $request, $post_id)
-{
-    $request->validate([
-        'model_number' => 'required|string|max:255',
-        'product_photo' => 'nullable|image',
-        'manual_photo' => 'nullable|image'
-    ]);
+    {
+        $request->validate([
+            'model_number' => 'required|string|max:255',
+            'product_photo' => 'nullable|image',
+            'manual_photo' => 'nullable|image'
+        ]);
 
-    $post = Post::findOrFail($post_id);
+        $post = Post::findOrFail($post_id);
 
-    // データを更新する
-    $post->model_number = $request->input('model_number');
+        // データを更新する
+        $post->model_number = $request->input('model_number');
 
-    // 商品写真の更新
-    if ($request->hasFile('product_photo')) {
-        // 新しいファイルを保存して、古いファイルを削除する
-        $post->product_photo = $request->file('product_photo')->store('product_photo', 'public');
-        Storage::disk('public')->delete($post->getOriginal('product_photo'));
+        // 商品写真の更新
+        if ($request->hasFile('product_photo')) {
+            // 新しいファイルを保存して、古いファイルを削除する
+            $post->product_photo = $request->file('product_photo')->store('product_photo', 'public');
+            Storage::disk('public')->delete($post->getOriginal('product_photo'));
+        }
+
+        // 説明書写真の更新
+        if ($request->hasFile('manual_photo')) {
+            // 新しいファイルを保存して、古いファイルを削除する
+            $post->manual_photo = $request->file('manual_photo')->store('manual_photo', 'public');
+            Storage::disk('public')->delete($post->getOriginal('manual_photo'));
+        }
+
+        $post->save();
+        return redirect()->route('posts.show', $post_id);
     }
-
-    // 説明書写真の更新
-    if ($request->hasFile('manual_photo')) {
-        // 新しいファイルを保存して、古いファイルを削除する
-        $post->manual_photo = $request->file('manual_photo')->store('manual_photo', 'public');
-        Storage::disk('public')->delete($post->getOriginal('manual_photo'));
-    }
-
-    $post->save();
-    return redirect()->route('posts.show', $post_id);
-}
-
 
     //削除機能
     public function destroy(Post $post)
