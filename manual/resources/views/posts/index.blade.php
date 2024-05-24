@@ -11,7 +11,7 @@
     <ul>
         @foreach ($posts as $post)
             <li>
-                {{ $post->model_number }}
+                <a href="{{ route('posts.show', $post->id) }}">{{ $post->model_number }}</a>
                 <br>
                 @if ($post->product_photo)
                     <img src="{{ asset('storage/' . $post->product_photo) }}" style="width: 200px">
@@ -21,6 +21,6 @@
         @endforeach
     </ul>
     <a href="{{ route('profile') }}">マイページに戻る</a><br>
-    {{-- {{ $posts->links() }}  --}}
+    
 </body>
 </html>

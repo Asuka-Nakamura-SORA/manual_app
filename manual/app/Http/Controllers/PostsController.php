@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Maker;
@@ -42,9 +43,19 @@ class PostsController extends Controller
 
     public function index()
     {
-        $posts = Post::latest()->paginate(10); // 最新の投稿を10件ずつ取得
+        $posts = Post::all();
         return view('posts.index', compact('posts'));
     }
     
+    public function show($id)
+    {
+        $post = Post::findOrFail($id); // 投稿が見つからない場合は例外をスローします
+        $post->load('user'); // 投稿に関連するユーザーリレーションをロードします
+
+        $category = Category::findOrFail($post->category_id);
+        $maker = Maker::findOrFail($post->maker_id);
+    
+        return view('posts.show', ['post' => $post , 'category' => $category , 'maker' => $maker]);
+    }
 
 }
