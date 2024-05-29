@@ -32,13 +32,12 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/posts/{id}', [PostsController::class, 'show'])->name('posts.show');
 
-    // Route::get('/edit/{post_id}', [PostsController::class, 'edit'])->name('edit');
     Route::get('/posts/{post}/edit', [PostsController::class, 'edit'])->name('posts.edit');
 
     Route::post('/update/{post_id}', [PostsController::class, 'update'])->name('posts.update');
 
     Route::delete('/posts/{post}', [PostsController::class, 'destroy'])->name('posts.destroy');
-
+    
 });
 
 Route::get('/',[UserController::class,'showLogin'])->name('login');
@@ -48,3 +47,5 @@ Route::post('/',[UserController::class,'login']);
 //ブックマーク機能のルーティング
 Route::post('bookmarks/{postId}',[BookmarksController::class,'store'])->name('bookmarks.store');
 Route::delete('bookmarks/{postId}',[BookmarksController::class,'destroy'])->name('bookmarks.destroy');
+
+
