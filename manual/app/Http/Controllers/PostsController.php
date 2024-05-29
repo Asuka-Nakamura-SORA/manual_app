@@ -42,11 +42,18 @@ class PostsController extends Controller
     }
 
     //投稿一覧表示
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::with('user')->get();
-        return view('posts.index', compact('posts'));
+        $query = Post::with('user');
+
+        // 検索機能
+        if ($request->filled('search')) {
+            $query->where('model_number', 'LIKE', "%" . $request->input('search') . "%");
+        }
+        $posts = $query->get();
+        return view('posts.index', compact('posts'));   
     }
+    
     
     //ユーザー名・カテゴリー・メーカーのnameを取得して詳細に表示
     public function show($id)
@@ -109,6 +116,22 @@ class PostsController extends Controller
         $post->delete();
 
         return redirect()->route('posts.index');
+    }
+
+    //検索機能
+    public function search(Request $request)
+    {
+        $articles = Post::orderBy('created_at', 'asc');
+
+        // 検索機能
+        if ($search = $request->input('search')) {
+            $articles->where(function ($query) use ($search) {
+                $query->where('model_number', 'LIKE', "%{$search}%");
+            });
+        }
+
+        $posts = $articles->get();
+        return view('posts.index', compact('posts'));
     }
 
 }

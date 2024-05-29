@@ -8,14 +8,20 @@
 </head>
 <body>
     <h1>投稿一覧</h1>
+
+    <form action="{{ route('posts.index') }}" method="GET">
+        <input type="text" name="search" value="{{request('search')}}" placeholder="キーワードを入力">
+        <button type="submit">検索</button>
+    </form>
+    
     <ul>
         @foreach ($posts as $post)
             <li>
                 <a href="{{ route('posts.show', $post->id) }}">{{ $post->model_number }}</a>
+
                 <br>
                 @if ($post->product_photo)
-                    <img src="{{ asset('storage/' . $post->product_photo) }}" style="width: 200px">
-                    
+                    <img src="{{ asset('storage/' . $post->product_photo) }}" style="width: 200px">                  
                 @endif 
             </li><br><br>
 
