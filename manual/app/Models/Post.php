@@ -28,6 +28,12 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
+
+    public function maker()
+    {
+        return $this->belongsTo(Maker::class);
+    }
+
     public function bookmarkedBy()
     {
         return $this->belongsToMany(User::class,'bookmarks')->withTimestamp();
