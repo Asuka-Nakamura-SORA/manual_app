@@ -34,9 +34,12 @@ class UserController extends Controller
         return redirect()->route('profile');
     }
 
+    //マイページ
     public function profile()
     {
-        return view('profile');
+        $user = Auth::user();
+        $bookmarks = $user->bookmarks()->with('user')->get();
+        return view('profile', compact('bookmarks'));
     }
 
     //ログアウト機能
