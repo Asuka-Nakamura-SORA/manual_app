@@ -5,6 +5,7 @@ use \App\Http\Controllers\UserController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MakersController;
+use App\Http\Controllers\BookmarksController;
 
 Route::get('/register', [UserController::class, 'showRegister'])->name('register');
 
@@ -43,3 +44,7 @@ Route::middleware('auth')->group(function (){
 Route::get('/',[UserController::class,'showLogin'])->name('login');
 
 Route::post('/',[UserController::class,'login']);
+
+//ブックマーク機能のルーティング
+Route::post('bookmarks/{postId}',[BookmarksController::class,'store'])->name('bookmarks.store');
+Route::delete('bookmarks/{postId}',[BookmarksController::class,'destroy'])->name('bookmarks.destroy');

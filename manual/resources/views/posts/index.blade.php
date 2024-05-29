@@ -17,7 +17,24 @@
                     <img src="{{ asset('storage/' . $post->product_photo) }}" style="width: 200px">
                     
                 @endif 
-            </li>
+            </li><br><br>
+
+            @if(Auth::user()->bookmarks->contains($post->id))
+                <form action="{{ route('bookmarks.destroy', $post->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" style="color: rgb(0, 0, 0);">
+                        ブックマーク解除
+                    </button>
+                </form>
+            @else
+                <form action="{{ route('bookmarks.store', $post->id) }}" method="POST">
+                    @csrf
+                    <button type="submit" style="color: rgb(255, 47, 0);">
+                        ブックマークする
+                    </button>
+                </form>
+            @endif
         @endforeach
     </ul>
     <a href="{{ route('profile') }}">マイページに戻る</a><br>

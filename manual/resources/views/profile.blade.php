@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
-    <h1>マイページ</h1>
-    {{\Illuminate\Support\Facades\Auth::user()->name}}でログインしています。<br>
+    <h1>torisetu</h1>
+    <p>{{\Illuminate\Support\Facades\Auth::user()->name}}でログインしています。</p><br>
 
     <a href="{{ route('posts.create') }}">新規投稿</a><br>
     <a href="{{ route('posts.index') }}">投稿一覧</a><br>
