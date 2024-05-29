@@ -44,14 +44,14 @@ class PostsController extends Controller
     //投稿一覧表示
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with('user')->get();
         return view('posts.index', compact('posts'));
     }
     
     //ユーザー名・カテゴリー・メーカーのnameを取得して詳細に表示
     public function show($id)
     {
-        $post = Post::findOrFail($id); 
+        $post = Post::with('user')->findOrFail($id); 
         $post->load('user'); 
 
         $category = Category::findOrFail($post->category_id);
