@@ -257,7 +257,7 @@ margin-bottom: 24px;
 margin-bottom: 0;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 480px) {
 .nav-items__item a {
 margin-bottom: 0;
 font-size: 18px;
@@ -343,9 +343,10 @@ main {
 
 
 .main ul li {
+    margin-top: 30px;
     margin-bottom: 10px; /* 各投稿の下部の余白 */
     border-bottom: 1px solid #ccc; /* 各投稿の下に罫線を追加 */
-    padding-bottom: 20px; /* 各投稿の下部の余白 */
+    padding-bottom: 5px; /* 各投稿の下部の余白 */
 }
 
 .main ul li:last-child {
@@ -364,3 +365,16 @@ main {
     max-width: 100%; /* 画像の最大幅を親要素に合わせる */
 }
 
+.main form {
+margin-bottom: 30px;
+}
+
+.bookmark-button {
+    margin-left: 190px;
+
+}
+
+.bookmarked-button{
+    margin-left: 190px;
+    background-color: #bdf3e6;
+}

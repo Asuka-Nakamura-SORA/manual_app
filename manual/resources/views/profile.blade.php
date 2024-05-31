@@ -32,13 +32,12 @@
                         <li class="nav-items__item"><a href="{{ route('posts.index') }}">投稿一覧</a></li>
                         <li class="nav-items__item"><a href="{{ route('category.index') }}">カテゴリ管理</a></li>
                         <li class="nav-items__item"><a href="{{ route('maker.index') }}">メーカー管理</a></li>
-                        <form action="{{route('user.logout')}}" method="post" class="btn btn-primary btn-large btn-block">
+                        <form action="{{ route('user.logout') }}" method="post">
                             @csrf
-                            <button>ログアウト</button>
+                            <button class="logout-button">ログアウト</button>
                         </form>
                     </ul>
                 </nav>
-
                 <button class="header__hamburger hamburger" id="js-hamburger">
                     <span></span>
                     <span></span>

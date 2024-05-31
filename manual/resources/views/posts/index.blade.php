@@ -59,24 +59,22 @@
                             @if ($post->product_photo)
                                 <img src="{{ asset('storage/' . $post->product_photo) }}" style="width: 200px">                  
                             @endif 
+                            <br>
+                            @if(Auth::user()->bookmarks->contains($post->id))
+                                <form action="{{ route('bookmarks.destroy', $post->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                        <button type="submit" class="bookmarked-button bookmarked">ブックマーク解除
+                                        </button>
+                                </form>
+                            @else
+                                <form action="{{ route('bookmarks.store', $post->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="bookmark-button">ブックマークする
+                                    </button>
+                                </form>
+                            @endif  
                         </li>
-                        @if(Auth::user()->bookmarks->contains($post->id))
-                        <form action="{{ route('bookmarks.destroy', $post->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="bookmark-button bookmarked">
-                                <i class="fas fa-heart"></i>
-                            </button>
-                        </form>
-                    @else
-                        <form action="{{ route('bookmarks.store', $post->id) }}" method="POST">
-                            @csrf
-                            <button type="submit" class="bookmark-button">
-                                <i class="far fa-heart"></i>
-                            </button>
-                        </form>
-                    @endif                   
-                    <br><br>
                     @endforeach
                 </ul>
             </div>
