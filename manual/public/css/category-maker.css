@@ -1,0 +1,558 @@
+    html,
+    body,
+    div,
+    span,
+    object,
+    iframe,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    abbr,
+    address,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    img,
+    ins,
+    kbd,
+    q,
+    samp,
+    small,
+    strong,
+    sub,
+    sup,
+    var,
+    b,
+    i,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td,
+    article,
+    aside,
+    canvas,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section,
+    summary,
+    time,
+    mark,
+    audio,
+    video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    }
+
+    body {
+    line-height: 1;
+    }
+
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+    display: block;
+    }
+
+    nav ul {
+    list-style: none;
+    }
+
+    blockquote,
+    q {
+    quotes: none;
+    }
+
+    blockquote:before,
+    blockquote:after,
+    q:before,
+    q:after {
+    content: '';
+    content: none;
+    }
+
+    a {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    }
+
+    /* change colours to suit your needs */
+    ins {
+    background-color: #ff9;
+    color: #000;
+    text-decoration: none;
+    }
+
+    /* change colours to suit your needs */
+    mark {
+    background-color: #ff9;
+    color: #000;
+    font-style: italic;
+    font-weight: bold;
+    }
+
+    del {
+    text-decoration: line-through;
+    }
+
+    abbr[title],
+    dfn[title] {
+    border-bottom: 1px dotted;
+    cursor: help;
+    }
+
+    table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    }
+
+    /* change border colour to suit your needs */
+    hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #cccccc;
+    margin: 1em 0;
+    padding: 0;
+    }
+
+    input,
+    select {
+    vertical-align: middle;
+    }
+
+
+    /* 調整用スタイル */
+
+    a {
+    text-decoration: none;
+    }
+
+
+
+    ul,
+    li {
+    list-style: none;
+    }
+
+
+    main {
+    background-color: #ffffff;
+    height: 800px;
+    display: flex;
+    }
+
+
+    .main {
+    margin: auto;
+    }
+
+
+    /* ヘッダー */
+
+
+    .header {
+    background-color: #f8f9fa;
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    }
+
+
+    @media screen and (min-width: 960px) {
+    .header {
+        height: 80px;
+
+    }
+    }
+
+
+    .header__inner {
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: inherit;
+    position: relative;
+    }
+
+
+    /* ヘッダーのロゴ部分 */
+    .header__title {
+    width: 80px;
+    }
+
+
+    .header__title:hover {
+    opacity: 0.8;
+    }
+
+
+    @media screen and (min-width: 960px) {
+    .header__title {
+        width: 140px;
+    }
+    }
+
+    .header__title img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    }
+
+    /* ヘッダーのナビ部分 */
+
+    .header__nav {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    transform: translateX(100%);
+    background-color: #d6d6d6;
+    transition: ease .4s;
+
+    display: flex;
+    }
+
+
+    @media screen and (min-width: 960px) {
+    .header__nav {
+        position: static;
+        transform: initial;
+        background-color: inherit;
+        height: inherit;
+        display: flex;
+        justify-content: end;
+        width: 40%;
+    }
+    }
+
+
+    .nav__items {
+    margin: auto;
+    }
+
+    @media screen and (min-width: 960px) {
+    .nav__items {
+        margin: initial;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        height: initial;
+        justify-content: space-between;
+    }
+    }
+
+
+    .nav-items__item {
+    cursor: pointer;
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    }
+
+    @media screen and (min-width: 960px) {
+
+    .nav-items__item:before {
+        position: absolute;
+        content: "";
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #5bc8ac;
+        opacity: 0;
+
+    }
+
+    .nav-items__item:hover:before {
+        opacity: 1;
+    }
+
+    }
+
+
+
+    /* ナビのリンク */
+    .nav-items__item a {
+    color: black;
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 24px;
+    }
+
+    .nav-items__item:last-child a {
+    margin-bottom: 0;
+    }
+
+    @media screen and (min-width: 960px) {
+    .nav-items__item a {
+        margin-bottom: 0;
+        font-size: 18px;
+    }
+    }
+
+
+    /* ハンバーガーメニュー */
+    .header__hamburger {
+    width: 48px;
+    height: 100%;
+    }
+
+    .hamburger {
+    background-color: transparent;
+    border-color: transparent;
+    z-index: 9999;
+    cursor: pointer;
+    }
+
+    @media screen and (min-width: 960px) {
+    .hamburger {
+        display: none;
+    }
+    }
+
+
+    /* ハンバーガーメニューの線 */
+    .hamburger span {
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+    position: relative;
+    transition: ease .4s;
+    display: block;
+    }
+
+    .hamburger span:nth-child(1) {
+    top: 0;
+    }
+
+    .hamburger span:nth-child(2) {
+    margin: 8px 0;
+    }
+
+
+    .hamburger span:nth-child(3) {
+    top: 0;
+    }
+
+
+    /* ハンバーガーメニュークリック後のスタイル */
+    .header__nav.active {
+    transform: translateX(0);
+    }
+
+    .hamburger.active span:nth-child(1) {
+    top: 5px;
+    transform: rotate(45deg);
+    }
+
+
+    .hamburger.active span:nth-child(2) {
+    opacity: 0;
+    }
+
+
+    .hamburger.active span:nth-child(3) {
+    top: -13px;
+    transform: rotate(-45deg);
+    }
+
+.main ul li, .main ol li {
+    color: black;
+    border-left: solid 8px rgb(132, 206, 241);/*左側の線*/
+    background: whitesmoke;/*背景色*/
+    margin-bottom: 5px;/*下のバーとの余白*/
+    line-height: 1.5;
+    border-radius: 0 15px 15px 0;/*右側の角だけ丸く*/
+    padding: 0.5em;
+    list-style-type: none!important;
+}
+
+    @media screen and (max-width: 480px) {
+        .main ul li, .main ol li {
+            margin-right: 45px;
+        }
+        }
+
+.Form {
+    margin-top: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 720px;
+}
+
+    @media screen and (max-width: 400px) {
+        .Form {
+            margin-top: 40px;
+        }
+    }
+
+.Form-Item {
+    border-top: 1px solid #444444;
+    border-bottom: 1px solid #444444;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+    @media screen and (max-width: 480px) {
+    .Form-Item {
+        padding-left: 14px;
+        padding-right: 14px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        flex-wrap: wrap;
+    }
+    }
+
+.Form-Item:nth-child(5) {
+    border-bottom: 1px solid #444444;
+}
+    
+.Form-Item-Label {
+    width: 100%;
+    max-width: 248px;
+    letter-spacing: 0.05em;
+    font-weight: bold;
+    font-size: 18px;
+}
+    @media screen and (max-width: 480px) {
+        .Form-Item-Label {
+            max-width: inherit;
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+        }
+    }
+
+.Form-Item-Label-Required {
+    border-radius: 6px;
+    margin-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 48px;
+    display: inline-block;
+    text-align: center;
+    background: #5bc8ac;
+    color: #fff;
+    font-size: 14px;
+}
+    @media screen and (max-width: 480px) {
+        .Form-Item-Label-Required {
+            border-radius: 4px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            width: 32px;
+            font-size: 10px;
+        }
+    }
+
+/*入力フォーム*/
+.Form-Item-Input {
+    border: 1px solid #ddd; /* 境界線のスタイル */
+    border-radius: 6px; /* 角丸 */
+    margin-left: 200px; /* 左側の余白 */
+    padding-left: 1em; /* 左側の余白 */
+    padding-right: 18em; /* 右側の余白 */
+    height: 60px; /* 高さ */
+    flex: 1; /* フレックスボックスの1の割合 */
+    width: 200%; /* 幅 */
+    max-width: 400px; /* 最大幅 */
+    background: #ffffff; /* 背景色 */
+    font-size: 18px; /* 文字サイズ */
+}
+
+@media screen and (max-width: 480px) {
+    .Form-Item-Input {
+        margin-left: 0px; /* 左側の余白を0に設定 */
+        margin-right: 30px;
+        margin-top: 18px; /* 上部の余白を追加 */
+        height: 40px; /* 高さを40pxに設定 */
+        flex: inherit; /* フレックスの割合を継承 */
+        font-size: 15px; /* 文字サイズを15pxに設定 */
+    }
+}
+
+/*登録ボタン*/
+.Form-Btn {
+    border-radius: 6px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 200px;
+    display: block;
+    letter-spacing: 0.05em;
+    background: #5bc8ac;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 480px) {
+    .Form-Btn {
+        margin-top: 24px; /* 上部の余白を追加 */
+        padding-top: 8px; /* ボタンの上部の余白を追加 */
+        padding-bottom: 8px; /* ボタンの下部の余白を追加 */
+        width: 160px; /* ボタンの幅を160pxに指定 */
+        font-size: 16px; /* ボタンの文字サイズを16pxに指定 */
+    }
+}

@@ -6,7 +6,7 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
         $(document).ready(function() {
@@ -27,13 +27,15 @@
 
                 <p>{{\Illuminate\Support\Facades\Auth::user()->name}}さんのマイページ</p>
 
-                <nav class="header__nav nav" id="js-nav">
-                    <ul class="nav__items nav-items">
-                        <li class="nav-items__item"><a href="{{ route('posts.create') }}">新規投稿</a></li>
+                <nav class="header__nav" id="js-nav">
+                    <ul class="nav__items">
                         <li class="nav-items__item"><a href="{{ route('posts.index') }}">投稿一覧</a></li>
                         <li class="nav-items__item"><a href="{{ route('category.index') }}">カテゴリ管理</a></li>
                         <li class="nav-items__item"><a href="{{ route('maker.index') }}">メーカー管理</a></li>
-
+                        <form action="{{route('user.logout')}}" method="post" class="btn btn-primary btn-large btn-block">
+                            @csrf
+                            <button>ログアウト</button>
+                        </form>
                     </ul>
                 </nav>
 
@@ -65,7 +67,7 @@
                                 <td>{{ $bookmark->maker->name }}</td>
                                 <td>{{ $bookmark->user->name }}</td>
                                 <td>
-                                    <a href="{{ route('posts.show' , ['id' => $bookmark->id]) }}">詳細を見る</a>
+                                    <a href="{{ route('posts.show' , ['id' => $bookmark->id]) }}">詳細</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -73,10 +75,6 @@
                 </table>
             </div>
         </main>
-        <form action="{{route('user.logout')}}" method="post">
-            @csrf
-            <button>ログアウト</button>
-        </form>
     </div>
 </body>
 </html>

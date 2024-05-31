@@ -8,7 +8,7 @@
     }
     body {
     font-family: Arial;
-    background-color: #3498DB;
+    background-color: #5bc8ac;
     padding: 50px;
     }
     .login {
@@ -46,13 +46,13 @@
     }
     
     input:focus {
-    border: 2px solid #3498DB;
+    border: 2px solid #5bc8ac;
     box-shadow: none;
     }
     
     .btn {
         border: 2px solid transparent;
-        background: #3498DB;
+        background: #5bc8ac;
         color: #ffffff;
         font-size: 16px;
         line-height: 25px;
@@ -68,12 +68,12 @@
     }
     
     .btn:hover {
-        background-color: #2980B9;
+        background-color: #5bc8ac;
     }
     
     .login-link {
         font-size: 12px;
-        color: #444;
+        color: #7e7d7d;
         display: block;
         margin-top: 12px;
     }

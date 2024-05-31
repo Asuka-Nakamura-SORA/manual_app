@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>posts</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/post-create.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -55,7 +56,7 @@
                 <form action="{{ route('posts.create') }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     <div>
-                        型番：<input name="model_number"/><br>
+                        型番：<input name="model_number"/><br><br>
                         商品写真：<input type="file" name="product_photo"><br>
                         説明書写真：<input type="file" name="manual_photo"><br>
                         <label for="category_id">カテゴリー：</label>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>投稿一覧</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/post-index.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -16,6 +16,7 @@
         });
     </script>
 </head>
+
 <body>
     <div class="container">
         <header class="header">
@@ -49,7 +50,6 @@
                     <input type="text" name="search" value="{{request('search')}}" placeholder="キーワードを入力">
                     <button type="submit">検索</button>
                 </form>
-    
                 <ul>
                     @foreach ($posts as $post)
                         <li>
@@ -59,24 +59,24 @@
                             @if ($post->product_photo)
                                 <img src="{{ asset('storage/' . $post->product_photo) }}" style="width: 200px">                  
                             @endif 
-                        </li><br><br>
-
+                        </li>
                         @if(Auth::user()->bookmarks->contains($post->id))
-                            <form action="{{ route('bookmarks.destroy', $post->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" style="color: rgb(0, 0, 0);">
-                                    ブックマーク解除
-                                </button>
-                            </form>
-                        @else
-                            <form action="{{ route('bookmarks.store', $post->id) }}" method="POST">
-                                @csrf
-                                <button type="submit" style="color: rgb(255, 47, 0);">
-                                    ブックマークする
-                                </button>
-                            </form>
-                        @endif
+                        <form action="{{ route('bookmarks.destroy', $post->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bookmark-button bookmarked">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </form>
+                    @else
+                        <form action="{{ route('bookmarks.store', $post->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="bookmark-button">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </form>
+                    @endif                   
+                    <br><br>
                     @endforeach
                 </ul>
             </div>

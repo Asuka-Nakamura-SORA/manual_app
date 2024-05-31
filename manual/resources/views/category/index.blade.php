@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cotegory</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/category-maker.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script>
             $(document).ready(function() {
@@ -45,16 +45,20 @@
 
         <main>
             <div class="main">
-                <form action="{{ route('category.store') }}" method="POST">
-                    @csrf
-                    <div>
-                        カテゴリ名：
-                        <input name="name"/>
-                    </div>
-                    <button>登録</button>
-                </form><br>
+                <div class="Form">
+                    <form action="{{ route('category.store') }}" method="POST">
+                        @csrf
+                        <div class="Form-Item">
+                            <p class="Form-Item-Label">
+                                <span class="Form-Item-Label-Required">必須</span>カテゴリ名
+                            </p>
+                            <input name="name" class="Form-Item-Input"/>
+                        </div>
+                        <input type="submit" class="Form-Btn" value="登録">
+                    </form>
+                </div>
 
-                <p>カテゴリ一覧</p>
+                <h1>カテゴリ一覧</h1>
                 <ul>
                     @foreach ($categories as $category)
                         <li>{{ $category->name }}</li>
